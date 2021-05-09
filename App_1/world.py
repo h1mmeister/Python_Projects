@@ -1,21 +1,18 @@
 from folium import Map
 
-latitude = float("40.09")
-longitude = float("-3.47")
+latitude = 40.09
+longitude = -3.47
 
 # dir(int) and dir(__builtins__)
-antipode_latitude = latitude.__mul__(int("-1"))
+antipode_latitude = latitude * (-1)
 
-if longitude.__le__(float("0")):
-    antipode_longitude = longitude.__add__(float("180"))
-elif longitude.__eq__(float("0")):
-    antipode_longitude = float("180")
-elif longitude.__gt__(float("180")):
-    antipode_longitude = str("Invalid Longitude")
+if longitude <= 0:
+    antipode_longitude = longitude + 180
 else:
-    antipode_longitude = longitude.__sub__(float("180"))
+    antipode_longitude = longitude - 180
 
-location = list((antipode_latitude, antipode_longitude))
+location = [antipode_latitude, antipode_longitude]
+
 world_map = Map(location)
 world_map.save("map.html")
 
